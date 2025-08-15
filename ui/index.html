@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saung Player</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <h1>Saung Player</h1>
-    <img src="./images/Music.png" alt="Music" width="200" height="200">
-    <h2>Here goes the title</h2>
-    <p>Other info</p>
+    <div class="player-container">
+        <h1>Saung Player</h1>
+        <img id="albumArt" src="./images/Music.png" alt="Music" />
+        <h2 id="songTitle">No song selected</h2>
+        <p id="songInfo">Other info</p>
 
-    <button id="selectFile">Select File</button>
+        <button id="selectFile">Select File</button>
 
-    <!-- audio player -->
-     <audio id="audioPlayer" controls style="display:none; margin-top:20px; width:300px;"></audio>
+        <audio id="audioPlayer" controls></audio>
+    </div>
 
-    <!-- Renderer script -->
     <script src="./script.js"></script>
 </body>
 </html>

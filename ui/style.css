@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #1DB954, #191414);
+    color: #fff;
+}
+
+.player-container {
+    text-align: center;
+    background: rgba(0,0,0,0.6);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    width: 320px;
+}
+
+#albumArt {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 4px solid #fff;
+    object-fit: cover;
+}
+
+button#selectFile {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #1DB954;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button#selectFile:hover {
+    background-color: #1ed760;
+}
+
+audio {
+    width: 100%;
+    margin-top: 20px;
+    outline: none;
+}

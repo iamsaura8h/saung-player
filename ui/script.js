@@ -1,6 +1,7 @@
 const selectFileBtn = document.getElementById("selectFile");
-const titleElement = document.querySelector("h2");
+const titleElement = document.getElementById("songTitle");
 const audioPlayer = document.getElementById("audioPlayer");
+const albumArt = document.getElementById("albumArt");
 
 // Load last song on app start
 (async () => {
@@ -20,8 +21,9 @@ selectFileBtn.onclick = async () => {
         const fullPath = file.filePaths[0];
         const fileName = fullPath.split("\\").pop();
 
-        // Update title
+        // Update title and album art
         titleElement.textContent = fileName;
+        albumArt.src = "./images/album art.jpeg"; // You can later use album art extraction
 
         // Load and play
         audioPlayer.src = `file:///${fullPath.replace(/\\/g, "/")}`;
@@ -33,6 +35,5 @@ selectFileBtn.onclick = async () => {
     } else {
         titleElement.textContent = "No file selected";
         audioPlayer.style.display = "none";
-        audioPlayer.pause();
     }
 };

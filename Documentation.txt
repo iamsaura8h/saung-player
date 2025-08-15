@@ -1,0 +1,7 @@
+features :
+
+If you want, we can extend this so it also remembers:
+The playback position so it resumes mid-song.
+A playlist of recently played songs.
+Do you want me to make it remember position & playlist next? That’s a full music player vibe.
+
