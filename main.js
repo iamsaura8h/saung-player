@@ -1,8 +1,10 @@
 // main.js
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
+const fs = require('fs');
 const path = require('path');
 
 let mainWindow = null;
+const settingsPath = path.join(app.getPath('userData'), 'settings.json');
 
 function createWindow() {
     mainWindow = new BrowserWindow({
@@ -11,7 +13,7 @@ function createWindow() {
         show: false,
         autoHideMenuBar: true,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js'), // secure preload
+            preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
             nodeIntegration: false
         }
@@ -24,7 +26,7 @@ function createWindow() {
     });
 }
 
-// Handle file picker from renderer
+// File picker
 ipcMain.handle('dialog:selectFile', async () => {
     const result = await dialog.showOpenDialog(mainWindow, {
         filters: [
@@ -32,6 +34,20 @@ ipcMain.handle('dialog:selectFile', async () => {
         ]
     });
     return result;
+});
+
+// Save last song
+ipcMain.on('save:lastSong', (event, songPath) => {
+    fs.writeFileSync(settingsPath, JSON.stringify({ lastSong: songPath }), 'utf-8');
+});
+
+// Load last song
+ipcMain.handle('load:lastSong', () => {
+    if (fs.existsSync(settingsPath)) {
+        const data = JSON.parse(fs.readFileSync(settingsPath, 'utf-8'));
+        return data.lastSong || null;
+    }
+    return null;
 });
 
 app.whenReady().then(createWindow);
