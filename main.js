@@ -1,30 +1,41 @@
-let {app , BrowserWindow } = require('electron')
+// main.js
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
+const path = require('path');
 
-// main window variable this will hold the reference to the main window
 let mainWindow = null;
 
-// create the main window
-// this function is called when the app is ready
-let createWindow = () => { 
+function createWindow() {
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
-        webPreferences : {
-            nodeIntegration: true,
-            enableRemoteModule: true
+        show: false,
+        autoHideMenuBar: true,
+        webPreferences: {
+            preload: path.join(__dirname, 'preload.js'), // secure preload
+            contextIsolation: true,
+            nodeIntegration: false
         }
     });
-    mainWindow.loadFile(__dirname + 'ui/index.html');  
+
+    mainWindow.loadFile(path.join(__dirname, 'ui', 'index.html'));
 
     mainWindow.on('ready-to-show', () => {
         mainWindow.show();
     });
 }
 
-// when app is ready, create the main window
-app.on('ready', createWindow);
+// Handle file picker from renderer
+ipcMain.handle('dialog:selectFile', async () => {
+    const result = await dialog.showOpenDialog(mainWindow, {
+        filters: [
+            { name: 'Audio/Music Files', extensions: ['mp3', 'wav', 'flac', 'ogg'] }
+        ]
+    });
+    return result;
+});
 
-// when all windows are closed, close the app
+app.whenReady().then(createWindow);
+
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit();
