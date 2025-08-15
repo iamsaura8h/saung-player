@@ -1,0 +1,23 @@
+{
+  "name": "cute-player",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start":"electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamsaura8h/saung-player.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamsaura8h/saung-player/issues"
+  },
+  "homepage": "https://github.com/iamsaura8h/saung-player#readme",
+  "description": "",
+  "devDependencies": {
+    "electron": "^37.3.0"
+  }
+}
