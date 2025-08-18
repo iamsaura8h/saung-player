@@ -3,6 +3,9 @@
 A **cross-platform desktop music player** built with [Electron](https://www.electronjs.org/), React, Node.js, and MongoDB.  
 Designed to provide a smooth, minimal, and offline-first music experience across Windows, Linux, and Mac.
 
+<img width="1517" height="966" alt="image" src="https://github.com/user-attachments/assets/c6aa4316-40a6-4b47-89c2-23e0b6b33791" />
+
+
 ---
 
 ## ✨ Features
